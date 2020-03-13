@@ -1,0 +1,58 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# edbuildr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ```edbuildr``` is to allow to import EdBuild's master dataset of school district finance,
+  student demographics, and community economic indicators for every school district in the United States.  
+  The master dataset is built from the US Census, Annual Survey of School System Finances (F33)
+  and joins data from the National Center for Education Statistics, Common Core of Data (CCD);
+  the US Census, Small Area Income and Poverty Estimates (SAIPE); and the US Census,
+  Education Demographic and Geographic Estimates (EDGE). We apply EdBuild's standard processing to the
+  dataset and provide the option to select from four different exclusion criteria - see the masterpull help
+  file for full details. The master dataset is available for any school year 2013-2017 or longitudinally for
+  2013-2017. Additional functions in the package use EdBuild's master data to analyze the difference 
+  between neighboring school districts and create formatted excel tables of school district data. For full
+  details about EdBuild's data processing please see EdBuild (2019)
+  <https://edbuild.org/content/dividing-lines/main/methodology>. 
+
+## Installation
+
+You can install the released version of edbuild from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("edbuildr")
+```
+
+## Example
+
+To view school district finance data for all districts: 
+
+```{r example}
+library(edbuildr)
+## To import EdBuild's master dataset of school district finance, student demographic, and community economic data for 2017:
+master_17 <- masterpull(data_year = "2017")
+
+str(master_17)
+```
+
+## Authors
+* Megan Brodzik (megan@edbuild.org), maintainer
+* Cecilia Depman (cecilia@edbuild.org), author 
+* Sara Hodges (sara@edbuild.org), author
+* Kailey Spencer (kailey.spencer.depoe@gmail.com), contributor
