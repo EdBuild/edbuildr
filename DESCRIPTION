@@ -19,6 +19,8 @@ Description: Import the 'EdBuild' master dataset of school district finance,
   between neighboring school districts and create formatted excel tables of school district data. For full details about
   'EdBuild' data processing please see 'EdBuild' (2019) <https://edbuild.org/content/dividing-lines/main/methodology>. 
 License: CC0
+URL: https://github.com/EdBuild/edbuildr
+BugReports: https://github.com/EdBuild/edbuildr/issues
 Imports: 
     dplyr,
     magrittr,
