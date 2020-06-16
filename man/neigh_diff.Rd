@@ -4,12 +4,12 @@
 \alias{neigh_diff}
 \title{A function to find the difference between school district neighbors}
 \usage{
-neigh_diff(data_year= "2017",
+neigh_diff(data_year= "2018",
  diff_var="Percentage Point Difference in Poverty Rate", type= "like")
 }
 \arguments{
 \item{data_year}{Four digit year of master data to pull in. Options include
-2013- 2017. Defaults to 2017.}
+2013- 2018. Defaults to 2018.}
 
 \item{diff_var}{Character string on which to rank the difference between
 school district neighbors. Use diff_var = “options” to print a list of the variables.
@@ -35,7 +35,7 @@ district neighbors and calculate the national rank from largest to smallest.
 }
 \examples{
 \donttest{tr_diff <- neigh_diff(
-           data_year = "2017",
+           data_year = "2018",
            diff_var = "Difference in Total Revenue Per Pupil"
            )}
 }

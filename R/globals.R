@@ -31,4 +31,6 @@ utils::globalVariables(c("B11", "C11", 'C24', "COLIn", "CONUM", "CONUM_1", "CONU
                          "student_per_sq_mile_diff", "tpop_diff", "u_id", "white_diff", "year",
                          "LRPP", "Local Revenue PP", "MHI", "MPV", "Percent FRL", "Percent Nonwhite", "Poverty Rate",
                          "SLRPP", "SRPP", "StPovRate", "State Revenue PP", "Total Revenue PP",
-                         "pctNonwhite", "code"))
+                         "pctNonwhite", "code", "LR", "LRPP_cnty", "LRPP_state", "LR_cnty", "LR_state",
+                         "NAME", "SLRPP_cnty", "SLRPP_diff", "SLRPP_state", "SRPP_cnty", "SRPP_state",
+                         "enroll_f33", "outcome", "state_id", "dIEP"))

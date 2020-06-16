@@ -3,7 +3,7 @@
 #' This function allows you to find the difference between each pair of school
 #' district neighbors and calculate the national rank from largest to smallest.
 #' @param data_year Four digit year of master data to pull in. Options include
-#'   2013- 2017. Defaults to 2017.
+#'   2013- 2018. Defaults to 2018.
 #' @param diff_var Character string on which to rank the difference between
 #'   school district neighbors. Use diff_var = “options” to print a list of the variables.
 #'   Defaults to Percentage Point Difference in
@@ -17,7 +17,7 @@
 #'   district and it has 1 neighbor that is also unified, 16 neighbors that are secondary
 #'   districts, and 32 neighbors that are elementary districts.
 #' @keywords neighbors difference rank EdBuild
-#' @usage neigh_diff(data_year= "2017",
+#' @usage neigh_diff(data_year= "2018",
 #'  diff_var="Percentage Point Difference in Poverty Rate", type= "like")
 #' @import dplyr magrittr
 #' @return A dataframe where each observation is a pair of neighboring school
@@ -27,84 +27,79 @@
 #' @export
 #' @examples
 #' \donttest{tr_diff <- neigh_diff(
-#'            data_year = "2017",
+#'            data_year = "2018",
 #'            diff_var = "Difference in Total Revenue Per Pupil"
 #'            )}
 
-neigh_diff = function(data_year = "2017", diff_var="Percentage Point Difference in Poverty Rate", type= "like") {
+neigh_diff = function(data_year = "2018", diff_var="Percentage Point Difference in Poverty Rate", type= "like") {
 
   if (as.numeric(data_year)<2013) {
-    message("Error: Master datasets are only available for years 2013 through 2017")
+    message("Error: Master datasets are only available for years 2013 through 2018")
   }
 
-  else if (as.numeric(data_year)>2017) {
-    message("Error: Master datasets are only available for years 2013 through 2017")
+  else if (as.numeric(data_year)>2018) {
+    message("Error: Master datasets are only available for years 2013 through 2018")
   }
 
     else if (as.numeric(data_year)==2013){
       url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2013/full_data_13_geo_exc.csv"
       master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-        dplyr::select(-Region, -COLIn) %>%
         dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
       pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1314.csv"
       pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
 
-      sd_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/SD+Types/sd_type_13_14.csv"
-      sd_type <- read.csv(file = sd_url, stringsAsFactors = FALSE)
     }
 
     else if(as.numeric(data_year)==2014) {
       url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2014/full_data_14_geo_exc.csv"
       master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-        dplyr::select(-Region, -COLIn) %>%
         dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
       pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1314.csv"
       pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
 
-      sd_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/SD+Types/sd_type_13_14.csv"
-      sd_type <- read.csv(file = sd_url, stringsAsFactors = FALSE)
     }
 
     else if(as.numeric(data_year)==2015) {
       url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2015/full_data_15_geo_exc.csv"
       master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-        dplyr::select(-Region, -COLIn) %>%
         dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
       pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1516.csv"
       pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
 
-      sd_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/SD+Types/sd_type_15_16.csv"
-      sd_type <- read.csv(file = sd_url, stringsAsFactors = FALSE)
     }
 
     else if(as.numeric(data_year)==2016)  {
       url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2016/full_data_16_geo_exc.csv"
       master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-        dplyr::select(-Region, -COLIn) %>%
         dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
       pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1516.csv"
       pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
 
-      sd_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/SD+Types/sd_type_15_16.csv"
-      sd_type <- read.csv(file = sd_url, stringsAsFactors = FALSE)
     }
 
     else if(as.numeric(data_year)==2017) {
       url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2017/full_data_17_geo_exc.csv"
       master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-        dplyr::select(-Region, -COLIn) %>%
         dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
       pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1617.csv"
       pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
 
-      sd_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/SD+Types/sd_type_17_18.csv"
-      sd_type <- read.csv(file = sd_url, stringsAsFactors = FALSE)
     }
+
+  else if(as.numeric(data_year)==2018) {
+    url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/full_data_18_geo_exc.csv"
+    master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+      dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
+
+    pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1617.csv"
+    pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
+
+  }
 
     master_names <- names(master) ## making vector of names in master to apply below with either _1 or _2
 
@@ -116,11 +111,7 @@ neigh_diff = function(data_year = "2017", diff_var="Percentage Point Difference 
 
     pair_data <- pairs %>% ## Combine variables + neighbors
       dplyr::left_join(master1, by = c("GEOID" = "NCESID_1")) %>% ## First, join variables to neighbor list (base) - ncesid_1
-      dplyr::left_join(sd_type, by = "GEOID") %>%
-      dplyr::rename(sd_type_1 = sdType) %>%
       dplyr::left_join(master2, by = c("GEOID.1" = "NCESID_2")) %>% ## Then, join variables to neighbor list (pair) - the neighbor pair
-      dplyr::left_join(sd_type, by = c("GEOID.1" = "GEOID")) %>%
-      dplyr::rename(sd_type_2 = sdType) %>%
       dplyr::filter(State_1 == State_2,      ## filtering out pairs where they are across state lines
            length >= 152.4) %>%             ## filter so districts are only neighbors if they share more than 500ft of border line
       dplyr::select(-STATE_FIPS_2, -State_2, -CONUM_1, -CONUM_2, -SRPP_cola_1, -LRPP_cola_1, -SLRPP_cola_1,
@@ -210,7 +201,7 @@ neigh_diff = function(data_year = "2017", diff_var="Percentage Point Difference 
              `Neighbor Local Revenue PP` = LRPP_2,
              `Neighbor State Revenue PP` = SRPP_2,
              `Neighbor Total Revenue PP` = SLRPP_2,
-            `Neighbor Percent FRL` = FRL_rate_2,
+             `Neighbor Percent FRL` = FRL_rate_2,
              `Neighbor MHI` = MHI_2,
              `Neighbor MPV` = MPV_2,
              `Neighbor Percent Nonwhite` = pctNonwhite_2,
@@ -282,9 +273,9 @@ neigh_diff = function(data_year = "2017", diff_var="Percentage Point Difference 
                   dplyr::arrange(desc(get(diff_var))) %>% ### get() converts the diff_var from string to variable name
                   dplyr::mutate(rank = row_number()) %>%
                   dplyr::select(NCESID_1, NCESID_2, u_id, rank, State, `District Name`,
-                                `Neighbor Name`, diff_var, `District Enrollment, F33`:`Neighbor Level`)
+                                `Neighbor Name`, tidyselect::all_of(diff_var), `District Enrollment, F33`:`Neighbor Percent FRL`)
 
-                colnames(pairs_data_diff)[4] <- paste("Rank", diff_var, sep = "_")
+                colnames(pairs_data_diff)[4] <- paste("Rank", tidyselect::all_of(diff_var), sep = "_")
 
                 return (pairs_data_diff)
               }
@@ -315,9 +306,9 @@ neigh_diff = function(data_year = "2017", diff_var="Percentage Point Difference 
             dplyr::arrange(desc(get(diff_var))) %>% ### get() converts the diff_var from string to variable name
             dplyr::mutate(rank = row_number()) %>%
             dplyr::select(NCESID_1, NCESID_2, u_id, rank, State, `District Name`,
-                          `Neighbor Name`, diff_var, `District Enrollment, F33`:`Neighbor Level`)
+                          `Neighbor Name`, tidyselect::all_of(diff_var), `District Enrollment, F33`:`Neighbor Percent FRL`)
 
-          colnames(pairs_data_diff)[4] <- paste("Rank", diff_var, sep = "_")
+          colnames(pairs_data_diff)[4] <- paste("Rank", tidyselect::all_of(diff_var), sep = "_")
 
           return (pairs_data_diff)
         }

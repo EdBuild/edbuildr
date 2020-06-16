@@ -3,7 +3,7 @@
 #' This function imports the US Census, Annual Survey of School System Finances
 #' (F33) data with standard EdBuild processing steps applied to revenues.
 #' @param data_year Four digit year of F33 data you would like to pull.
-#'   Available for 2006-2017.
+#'   Available for 2006-2018.
 #' @param additional_var List any additional F33 variables you would like to
 #'   pull.
 #' @param path Path name of F33 file if data is stored on local computer.
@@ -13,7 +13,7 @@
 #' @keywords F33 data EdBuild
 #' @import stringr dplyr magrittr
 #' @importFrom utils read.csv
-#' @usage f33pull(data_year, path=NULL, additional_var=NULL, keep_calcs=FALSE)
+#' @usage f33pull(data_year = "2018", path=NULL, additional_var=NULL, keep_calcs=FALSE)
 #' @seealso \code{\link{f33pull_raw}}
 #' @export
 #' @return A dataframe where each observation is a school district.
@@ -54,15 +54,15 @@
 #'   adjustments} \item{STLOCREV_adj_PP}{State and local revenue per pupil -
 #'   with EdBuild adjustments} }
 #' @source
-#' \url{https://s3.amazonaws.com/data.edbuild.org/public/Raw+Data/F33/csv/2017.csv}
+#' \url{https://s3.amazonaws.com/data.edbuild.org/public/Raw+Data/F33/csv/2018.csv}
 #'
 #' @examples
-#' \donttest{f33_2017 <- f33pull(data_year="2017",
+#' \donttest{f33_2018 <- f33pull(data_year="2018",
 #'                     additional_var=c("V40", "TCAPOUT"),
 #'                     keep_calcs=FALSE)}
 
 
-f33pull = function(data_year, path=NULL, additional_var=NULL, keep_calcs=FALSE) {
+f33pull = function(data_year = "2018", path=NULL, additional_var=NULL, keep_calcs=FALSE) {
 
   fips <- masterpull(data_year) %>%
     dplyr::select(State, STATE_FIPS) %>%
@@ -73,9 +73,9 @@ f33pull = function(data_year, path=NULL, additional_var=NULL, keep_calcs=FALSE) 
     message("Error: f33pull cannot be used for data before the year 2006 because local property sale was not measured before this year")
   }
 
-  else if (as.numeric(data_year)>2017) {
-    #the most current year of F33 data is 2017, so a data_year of more than that is not valid
-    message("Error: The most recent year of F33 data is for 2017; data_year > 2017 is not valid")
+  else if (as.numeric(data_year)>2018) {
+    #the most current year of F33 data is 2018, so a data_year of more than that is not valid
+    message("Error: The most recent year of F33 data is for 2018; data_year > 2018 is not valid")
   }
 
   else {

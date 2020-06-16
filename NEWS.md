@@ -1,3 +1,13 @@
+# edbuildr 0.2.0
+
+* added new function `<big_borders()>` to model county and state level local revenue pooling
+* added new function`<sd_neighbor()>` to create a dataframe of neighboring school districts
+* added state school district ids and school district levels to `<masterpull()>` 
+* padded unique school ids to a standard seven digits in `<masterpull()>` 
+* added parameter to `<masterpull()>` to view disaggregated 2018 data for school districts in Vermont
+* corrected misspelling of variable name in `<sd_neighbor_xlsx()>` 
+* updated all functions with 2018 data
+
 # edbuildr 0.1.1
 
 * added undirected single quotes around 'EdBuild' and 'EdBuild's' in the description file

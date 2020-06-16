@@ -4,17 +4,17 @@
 #'   district and its neighbors with selected data from EdBuild's master
 #'   datafile, ready to export as a formatted excel file.
 #' @param data_year Four digit year of master data to pull in. Options include
-#'   2013- 2017. Defaults to 2017.
+#'   2013- 2018. Defaults to 2018.
 #' @param school_district Seven digit NCESID of the school district. Default is
 #'   NULL. To find the NCESID for any school district, use
 #'   \code{\link{masterpull}} to search for your district.
 #' @param table_vars Variable or list of variables to include in the table. Use
 #'   tables_vars = “options” to print a list of the variables. Defaults to:
 #'   Name; Enrollment; Poverty Rate; Percent Nonwhite; Local Revenue, per Pupil;
-#'   State Revenue, per Pupil
+#'   State Revenue, per Pupil; Type
 #' @keywords neighbors difference table EdBuild
 #' @import dplyr openxlsx scales stringr magrittr
-#' @usage sd_neighbor_xlsx(data_year = "2017", school_district = NULL,
+#' @usage sd_neighbor_xlsx(data_year = "2018", school_district = NULL,
 #'   table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite',
 #'   'Local Revenue PP', 'State Revenue PP', 'Type'))
 #' @return An excel workbook which can be written out with
@@ -25,8 +25,8 @@
 #' @export
 #' @examples
 #' \donttest{table <- sd_neighbor_xlsx(
-#'          data_year = "2017",
-#'          school_district = "3402640",
+#'          data_year = "2018",
+#'          school_district = "0622710",
 #'          table_vars = c("Name",
 #'                        "Percent FRL",
 #'                        "Median Household Income",
@@ -34,10 +34,10 @@
 #'         )}
 
 
-sd_neighbor_xlsx = function (data_year = "2017", school_district = NULL, table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Local Revenue PP', 'State Revenue PP', 'Type')) {
+sd_neighbor_xlsx = function (data_year = "2018", school_district = NULL, table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Local Revenue PP', 'State Revenue PP', 'Type')) {
 
 
-  dist_list <- neigh_diff(data_year='2017', diff_var="Percentage Point Difference in Poverty Rate", type = "all") %>%
+  dist_list <- neigh_diff(data_year='2018', diff_var="Percentage Point Difference in Poverty Rate", type = "all") %>%
     dplyr::mutate(NCESID_1 = stringr::str_pad(NCESID_1, 7, pad="0"),
                   NCESID_2 = stringr::str_pad(NCESID_2, 7, pad="0"))
 
@@ -90,11 +90,11 @@ sd_neighbor_xlsx = function (data_year = "2017", school_district = NULL, table_v
             'Median Household Income', 'Median Property Value', 'Type')
 
   if (as.numeric(data_year)<2013) {
-    message("Error: Master datasets are only available for years 2013 through 2017")
+    message("Error: Master datasets are only available for years 2013 through 2018")
   }
 
-  else if (as.numeric(data_year)>2017) {
-    message("Error: Master datasets are only available for years 2013 through 2017")
+  else if (as.numeric(data_year)>2018) {
+    message("Error: Master datasets are only available for years 2013 through 2018")
   }
 
   else if (is.null(school_district)) {
@@ -108,10 +108,10 @@ sd_neighbor_xlsx = function (data_year = "2017", school_district = NULL, table_v
   }
 
   else if(setequal(intersect(table_vars, good), table_vars) == FALSE){
-    message("Error: Use one or more of the following variables to generate a table:
+    message("Use one or more of the following variables to generate a table:
               table_vars = c('Name', 'County', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Percent FRL',
                      'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP',
-                     'Median Property Value', 'Median Houshold Income', 'Type')")
+                     'Median Property Value', 'Median Household Income', 'Type')")
   }
 
   else  {
@@ -326,7 +326,7 @@ sd_neighbor_xlsx = function (data_year = "2017", school_district = NULL, table_v
                           "Poverty Rate",
                           "Median Property Value",  "Median Household Income", "Type")
 
-  found <- match(colnames(table_reform), search_for_these, nomatch = 0)
+    found <- match(colnames(table_reform), search_for_these, nomatch = 0)
   colnames(table_reform)[colnames(table_reform) %in% search_for_these] <- replace_with_these[found]
 
   NameId = table_reform$Name[1]

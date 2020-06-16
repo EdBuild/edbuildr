@@ -5,13 +5,13 @@
 \title{A function to create a table of school districts in a selected state
   or county}
 \usage{
-sd_table_xlsx(data_year = '2017', state = "New Jersey", county = NULL,
+sd_table_xlsx(data_year = '2018', state = "New Jersey", county = NULL,
   table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite',
   'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP'))
 }
 \arguments{
 \item{data_year}{Four digit year of master data to pull in. Options include
-2013- 2017. Defaults to 2017.}
+2013- 2018. Defaults to 2018.}
 
 \item{state}{State name. Defaults to New Jersey.}
 
@@ -32,7 +32,7 @@ This function allows you to write out a table of any school
   districts with selected data as a formatted excel file.
 }
 \examples{
-\donttest{my_table <- sd_table_xlsx(data_year = "2017",
+\donttest{my_table <- sd_table_xlsx(data_year = "2018",
             state = "Maryland",
             county = c("Baltimore County", "Baltimore City", "Howard County", "Carroll County"),
             table_vars = c("Name", "Poverty Rate")
