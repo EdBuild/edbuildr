@@ -32,7 +32,6 @@ big_borders = function(data_year = "2018", pooling_level="county") {
   else if (as.numeric(data_year)==2013){
     url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2013/full_data_13_geo_exc.csv"
     master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-      dplyr::select(-Region, -COLIn) %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
   }
@@ -40,7 +39,6 @@ big_borders = function(data_year = "2018", pooling_level="county") {
   else if(as.numeric(data_year)==2014) {
     url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2014/full_data_14_geo_exc.csv"
     master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-      dplyr::select(-Region, -COLIn) %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
   }
@@ -48,7 +46,6 @@ big_borders = function(data_year = "2018", pooling_level="county") {
   else if(as.numeric(data_year)==2015) {
     url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2015/full_data_15_geo_exc.csv"
     master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-      dplyr::select(-Region, -COLIn) %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
   }
@@ -56,7 +53,6 @@ big_borders = function(data_year = "2018", pooling_level="county") {
   else if(as.numeric(data_year)==2016)  {
     url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2016/full_data_16_geo_exc.csv"
     master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-      dplyr::select(-Region, -COLIn) %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
   }
@@ -64,14 +60,12 @@ big_borders = function(data_year = "2018", pooling_level="county") {
   else if(as.numeric(data_year)==2017) {
     url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2017/full_data_17_geo_exc.csv"
     master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-      dplyr::select(-Region, -COLIn) %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
   }
   else if(as.numeric(data_year)==2018) {
     url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/full_data_18_geo_exc.csv"
     master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
-      dplyr::select(-COLIn) %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
   }
