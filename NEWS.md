@@ -1,3 +1,9 @@
+# edbuildr 0.2.1
+
+* fixed bug in function `<big_borders()>` 
+* added variables median household income and median property value to `<sd_table_xlsx()>` 
+* updated links to methodology workshops in description file
+
 # edbuildr 0.2.0
 
 * added new function `<big_borders()>` to model county and state level local revenue pooling

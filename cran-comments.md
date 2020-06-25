@@ -1,5 +1,18 @@
 ## Resubmission
 This is a resubmission. In this version I have:
+* fixed bug in function `<big_borders()>` 
+* added variables median household income and median property value to `<sd_table_xlsx()>` 
+
+## Test environments
+* local OS X install, R 3.6.2
+* win-builder (devel and release)
+
+## R CMD check results
+
+0 errors | 0 warnings | 0 notes
+
+## Resubmission
+This is a resubmission. In this version I have:
 * added new function `<big_borders()>` to model county and state level local revenue pooling
 * added new function`<sd_neighbor()>` to create a dataframe of neighboring school districts
 * added state school district ids and school district levels to `<masterpull()>` 

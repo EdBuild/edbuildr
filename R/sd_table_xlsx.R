@@ -34,7 +34,7 @@ sd_table_xlsx = function (data_year = '2018', state = "New Jersey", county = NUL
 
   good <- c('NCESID', 'Name', 'County', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Percent FRL',
             'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP',
-            'MPV', 'MHI')
+            'Median Property Value', 'Median Household Income')
 
   county_name <- masterpull(data_year='2018', data_type = "fin") %>%
       dplyr::mutate(NCESID = stringr::str_pad(NCESID, 7, pad="0"),
@@ -60,7 +60,7 @@ sd_table_xlsx = function (data_year = '2018', state = "New Jersey", county = NUL
     message("Error: Use one or more of the following variables to generate a table:
               table_vars = c('NCESID', 'Name', 'County', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Percent FRL',
                      'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP',
-                     'MPV', 'MHI')")
+                     'Median Property Value', 'Median Household Income'")
   }
 
   else{
@@ -126,7 +126,7 @@ sd_table_xlsx = function (data_year = '2018', state = "New Jersey", county = NUL
         message("Error: Use one or more of the following variables to generate a table:
                      table_vars = c('NCESID', 'Name', 'County', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Percent FRL',
                      'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP',
-                     'MPV', 'MHI')")
+                     'Median Property Value', 'Median Household Income')")
       }
 
       if(i == 1) {

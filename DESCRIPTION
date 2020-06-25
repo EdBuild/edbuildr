@@ -1,7 +1,7 @@
 Package: edbuildr
 Type: Package
 Title: Automated School District Data Download and Processing
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person("Megan", "Brodzik", email = "meganbrodzik@gmail.com", role = c("cre", "aut")),
     person("Cecilia", "Depman", email = "cecilia.depman@gmail.com", role = "aut"),
@@ -18,9 +18,9 @@ Description: Import the 'EdBuild' master dataset of school district finance,
   School year is identified by the end year. For example, the 2017-18 school year is 2018.
   Additional functions in the package use 'EdBuild' master data to analyze the difference 
   between neighboring school districts and create formatted excel tables of school district data. For full details about
-  'EdBuild' data processing please see 'EdBuild' (2020) <https://data.edbuild.org>. 
+  'EdBuild' data processing please see 'EdBuild' (2020) <http://data.edbuild.org>. 
 License: CC0
-URL: https://github.com/EdBuild/edbuildr, https://edbuild.github.io/
+URL: https://github.com/EdBuild/edbuildr, http://viz.edbuild.org/workshops/edbuildr/, http://viz.edbuild.org/workshops/data-overview/
 BugReports: https://github.com/EdBuild/edbuildr/issues
 Imports: 
     dplyr,
