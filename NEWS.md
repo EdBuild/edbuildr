@@ -1,3 +1,7 @@
+# edbuildr 0.3.0
+
+* updated all functions with 2019 data
+
 # edbuildr 0.2.1
 
 * fixed bug in function `<big_borders()>` 

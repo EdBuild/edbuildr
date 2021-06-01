@@ -4,13 +4,13 @@
 \alias{sd_neighbor_xlsx}
 \title{A function to create a table of a school district and all its neighbors}
 \usage{
-sd_neighbor_xlsx(data_year = "2018", school_district = NULL,
+sd_neighbor_xlsx(data_year = "2019", school_district = NULL,
   table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite',
   'Local Revenue PP', 'State Revenue PP', 'Type'))
 }
 \arguments{
 \item{data_year}{Four digit year of master data to pull in. Options include
-2013- 2018. Defaults to 2018.}
+2013- 2019. Defaults to 2019.}
 
 \item{school_district}{Seven digit NCESID of the school district. Default is
 NULL. To find the NCESID for any school district, use
@@ -33,10 +33,10 @@ This function allows you to write out a table of any school
 }
 \examples{
 \donttest{table <- sd_neighbor_xlsx(
-         data_year = "2018",
+         data_year = "2019",
          school_district = "0622710",
          table_vars = c("Name",
-                       "Percent FRL",
+                       "Percent Nonwhite",
                        "Median Household Income",
                         "State Revenue PP")
         )}

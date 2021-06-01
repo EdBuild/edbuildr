@@ -8,14 +8,14 @@
  \href{https://www.census.gov/programs-surveys/school-finances.html}{US
  Census's Annual Survey of School System Finances} technical documentation.}
 \source{
-\url{https://s3.amazonaws.com/data.edbuild.org/public/Raw+Data/F33/csv/2018.csv}
+\url{https://s3.amazonaws.com/data.edbuild.org/public/Raw+Data/F33/csv/2019.csv}
 }
 \usage{
-f33pull_raw(data_year = "2018")
+f33pull_raw(data_year = "2019")
 }
 \arguments{
 \item{data_year}{Four digit year of F33 data you would like to pull. Available
-for 1990-2018.}
+for 1990-2019.}
 }
 \value{
 A dataframe where each observation is a school district.
@@ -25,7 +25,7 @@ This function imports raw data from the US Census, Annual Survey of School
 System Finances (F33).
 }
 \examples{
-\donttest{f33_2018 <- f33pull_raw('2018')}
+\donttest{f33_2019 <- f33pull_raw('2019')}
 }
 \seealso{
 \code{\link{f33pull}}

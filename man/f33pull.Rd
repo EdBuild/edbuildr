@@ -15,14 +15,14 @@
   adjustments} \item{STLOCREV_adj_PP}{State and local revenue per pupil -
   with EdBuild adjustments} }}
 \source{
-\url{https://s3.amazonaws.com/data.edbuild.org/public/Raw+Data/F33/csv/2018.csv}
+\url{https://s3.amazonaws.com/data.edbuild.org/public/Raw+Data/F33/csv/2019.csv}
 }
 \usage{
-f33pull(data_year = "2018", path=NULL, additional_var=NULL, keep_calcs=FALSE)
+f33pull(data_year = "2019", path=NULL, additional_var=NULL, keep_calcs=FALSE)
 }
 \arguments{
 \item{data_year}{Four digit year of F33 data you would like to pull.
-Available for 2006-2018.}
+Available for 2006-2019.}
 
 \item{path}{Path name of F33 file if data is stored on local computer.
 Defaults to NULL to pull in F33 data from EdBuild's server.}
@@ -67,7 +67,7 @@ The following processing was made to state and local revenues for each
   dividing lines map site}.
 }
 \examples{
-\donttest{f33_2018 <- f33pull(data_year="2018",
+\donttest{f33_2019 <- f33pull(data_year="2019",
                     additional_var=c("V40", "TCAPOUT"),
                     keep_calcs=FALSE)}
 }

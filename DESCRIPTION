@@ -1,7 +1,7 @@
 Package: edbuildr
 Type: Package
 Title: Automated School District Data Download and Processing
-Version: 0.2.1
+Version: 0.3.0
 Authors@R: c(
     person("Megan", "Brodzik", email = "meganbrodzik@gmail.com", role = c("cre", "aut")),
     person("Cecilia", "Depman", email = "cecilia.depman@gmail.com", role = "aut"),
@@ -14,8 +14,8 @@ Description: Import the 'EdBuild' master dataset of school district finance,
   the US Census, Small Area Income and Poverty Estimates; and the US Census,
   Education Demographic and Geographic Estimates. We apply 'EdBuild' standard processing to the
   dataset and provide the option to select from four different exclusion criteria - see the masterpull() help file for more details.
-  The master dataset is available for any school year from 2013 to 2018 or longitudinally for all years 2013-2018.
-  School year is identified by the end year. For example, the 2017-18 school year is 2018.
+  The master dataset is available for any school year from 2013 to 2019 or longitudinally for all years 2013-2019.
+  School year is identified by the end year. For example, the 2018-19 school year is 2019.
   Additional functions in the package use 'EdBuild' master data to analyze the difference 
   between neighboring school districts and create formatted excel tables of school district data. For full details about
   'EdBuild' data processing please see 'EdBuild' (2020) <http://data.edbuild.org>. 
@@ -30,7 +30,6 @@ Imports:
     stringr,
     tidyselect (>= 1.0.0)
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
     knitr,

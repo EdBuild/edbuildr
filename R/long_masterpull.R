@@ -1,7 +1,7 @@
 #' A function to import a longitudinal version of EdBuild's master dataset
 #'
 #' This function imports a longitudinal dataset of EdBuild's master data for the
-#' years 2013- 2018. The master dataset is a compilation of national level
+#' years 2013- 2019. The master dataset is a compilation of national level
 #' school district data from the US Census Annual Survey of School System
 #' Finances (F33); US Census Small Area Income and Poverty Estimates (SAIPE);
 #' National Center for Education Statistics (NCES) Common Core of Data (CCD);
@@ -13,7 +13,7 @@
 #' @return A dataframe where each observation is a school district.
 #' @seealso \code{\link{master_codebook}}, \code{\link{masterpull}}
 #' @export
-#' @format A data frame with 111,264 observations and 43 variables. To view
+#' @format A data frame with 130,419 observations and 44 variables. To view
 #'   descriptions of variable names and sources for each use
 #'   \code{master_codebook()}
 #' @examples
@@ -28,44 +28,59 @@ long_masterpull = function() {
       url_16 = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2016/full_data_16.csv"
       url_17 = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2017/full_data_17.csv"
       url_18 = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/full_data_18.csv"
+      url_19 = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19.csv"
+
 
       master_13 <- read.csv(file = url_13, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2013")
 
       master_14 <- read.csv(file = url_14, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2014")
 
       master_15 <- read.csv(file = url_15, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2015")
 
       master_16 <- read.csv(file = url_16, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2016")
 
       master_17 <- read.csv(file = url_17, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2017")
 
       master_18 <- read.csv(file = url_18, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2018")
 
-      long_master <- dplyr::bind_rows(master_13, master_14, master_15, master_16, master_17, master_18) %>%
+      master_19 <- read.csv(file = url_19, stringsAsFactors = FALSE) %>%
+        dplyr::mutate(CONUM = as.character(CONUM),
+                      STATE_FIPS = as.character(STATE_FIPS),
+                      dFRL = NA,
+                      FRL_rate = dFRL/dEnroll_district,
+                      year = "2019")
+
+      long_master <- dplyr::bind_rows(master_13, master_14, master_15, master_16, master_17, master_18, master_19) %>%
         dplyr::select(-X) %>%
         dplyr::select(NCESID, year, everything())
 

@@ -1,14 +1,14 @@
 #' A function to import EdBuild's master dataset
 #'
 #' This function allows you to read in EdBuild's master dataset for the years
-#' 2013- 2018. The master dataset is a compilation of national level school
+#' 2013- 2019. The master dataset is a compilation of national level school
 #' district data from the US Census Annual Survey of School System Finances
 #' (F33); US Census Small Area Income and Poverty Estimates (SAIPE); National
 #' Center for Education Statistics (NCES) Common Core of Data (CCD); and
 #' Education Demographic and Geographic Estimates (EDGE). Cost adjustments were
 #' calculated using C2ER.
 #' @param data_year Four digit year of master data to pull in. Options include
-#'   2013- 2018. Defaults to 2018.
+#'   2013- 2019. Defaults to 2019.
 #' @param data_type Type of master data to pull in \itemize{ \item \code{geo}
 #'   pulls in all school districts that have physical school district
 #'   boundaries. To be used for map-based analysis and other analyses that
@@ -22,11 +22,11 @@
 #'   used with great care, or to find a district that does not appear in any
 #'   other exclusion, for example charter school districts. } Defaults to
 #'   \code{gen}
-#' @param disaggregated For the full, general, and finance exclusions in 2018,
+#' @param disaggregated For the full, general, and finance exclusions in 2019,
 #'   users have the option to view disaggregated Vermont school district data
 #'   without EdBuild's aggregation processing.
 #' @keywords master data EdBuild F33 CCD SAIPE EDGE
-#' @usage masterpull(data_year = "2018", data_type = "gen", disaggregated =
+#' @usage masterpull(data_year = "2019", data_type = "gen", disaggregated =
 #'   FALSE)
 #' @import dplyr magrittr
 #' @importFrom utils read.csv
@@ -75,27 +75,27 @@
 #' @format A data frame with 42 variables. To view descriptions of variable
 #'   names and sources for each use \code{master_codebook()}
 #' @source
-#' \url{https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/full_data_18_type_exc.csv}
+#' \url{https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19_type_exc.csv}
 #'
 #' @examples
-#' \donttest{master18_geo <- masterpull("2018", data_type = "geo")}
+#' \donttest{master19_geo <- masterpull("2019", data_type = "geo")}
 
 
-masterpull = function(data_year = "2018", data_type = "gen", disaggregated = FALSE) {
+masterpull = function(data_year = "2019", data_type = "gen", disaggregated = FALSE) {
   if (as.numeric(data_year)<2013) {
-    message("Error: Master datasets are only available for years 2013 through 2018")
+    message("Error: Master datasets are only available for years 2013 through 2019")
   }
 
-  else if (as.numeric(data_year)>2018) {
-    message("Error: Master datasets are only available for years 2013 through 2018")
+  else if (as.numeric(data_year)>2019) {
+    message("Error: Master datasets are only available for years 2013 through 2019")
   }
 
   else if (data_type != "full" & data_type != "geo" & data_type != "gen" & data_type != "fin"){
     message("Error: please select a valid data_type ('gen', 'geo', 'fin', or 'full')")
   }
-  else if (data_year != 2018 & disaggregated == TRUE | data_year == 2018 & data_type == "geo" & disaggregated == TRUE){
+  else if ((data_year != 2018 & data_year != 2019 & disaggregated == TRUE) | ((data_year == 2018 | data_year == 2019) & data_type == "geo" & disaggregated == TRUE)){
     message("Error: disagregated school district data for Vermont is only avaiable
-            for the 2018 finance, general, and full master datasets")
+            for the 2018 and 2019 finance, general, and full master datasets")
   }
 
   else  {
@@ -138,6 +138,17 @@ masterpull = function(data_year = "2018", data_type = "gen", disaggregated = FAL
         master <- read.csv(file = url, stringsAsFactors = FALSE)
       }
 
+      else if(as.numeric(data_year)==2019 & data_type == "full" & disaggregated== FALSE) {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+          mutate(dFRL = NA)
+      }
+      else if(as.numeric(data_year)==2019 & data_type == "full" & disaggregated== TRUE) {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/disaggregated/full_data_19.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+          mutate(dFRL = NA)
+      }
+
       else if (as.numeric(data_year)==2013 & data_type == "geo"){
         url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2013/full_data_13_geo_exc.csv"
         master <- read.csv(file = url, stringsAsFactors = FALSE)
@@ -168,7 +179,12 @@ masterpull = function(data_year = "2018", data_type = "gen", disaggregated = FAL
       master <- read.csv(file = url, stringsAsFactors = FALSE)
 
       }
+      else if(as.numeric(data_year)==2019 & data_type == "geo") {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19_geo_exc.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+          mutate(dFRL = NA)
 
+      }
       else if (as.numeric(data_year)==2013 & data_type == "fin") {
         url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2013/full_data_13_fin_exc.csv"
         master <- read.csv(file = url, stringsAsFactors = FALSE)
@@ -200,6 +216,16 @@ masterpull = function(data_year = "2018", data_type = "gen", disaggregated = FAL
       else if(as.numeric(data_year)==2018 & data_type == "fin" & disaggregated== TRUE) {
         url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/disaggregated/disag_data_18_fin_exc.csv"
         master <- read.csv(file = url, stringsAsFactors = FALSE)
+      }
+      else if(as.numeric(data_year)==2019 & data_type == "fin" & disaggregated== FALSE) {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19_fin_exc.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+          mutate(dFRL = NA)
+      }
+      else if(as.numeric(data_year)==2019 & data_type == "fin" & disaggregated== TRUE) {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/disaggregated/full_data_19_fin_exc.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+          mutate(dFRL = NA)
       }
 
       else if (as.numeric(data_year)==2013 & data_type == "gen"){
@@ -234,12 +260,22 @@ masterpull = function(data_year = "2018", data_type = "gen", disaggregated = FAL
         url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/disaggregated/disag_data_18_type_exc.csv"
         master <- read.csv(file = url, stringsAsFactors = FALSE)
       }
+      else if (as.numeric(data_year)==2019 & data_type == "gen" & disaggregated== FALSE) {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19_type_exc.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+          mutate(dFRL = NA)
+      }
+      else if (as.numeric(data_year)==2019 & data_type == "gen" & disaggregated== TRUE) {
+        url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/disaggregated/full_data_19_type_exc.csv"
+        master <- read.csv(file = url, stringsAsFactors = FALSE)%>%
+          mutate(dFRL = NA)
+      }
 
     master <- master %>%
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district) %>%
-      dplyr::mutate(NCESID = stringr::str_pad(NCESID, width = 7, pad = "0"),
+      dplyr::mutate(NCESID = stringr::str_pad(NCESID, width = 7, "left", pad = "0"),
                     STATE_FIPS = stringr::str_pad(STATE_FIPS, width = 2, pad = "0"),
-                    CONUM = stringr::str_pad(CONUM, width = 2, pad = "0")) %>%
+                    CONUM = stringr::str_pad(CONUM, width = 5, "left", pad = "0")) %>%
       dplyr::select(NCESID, state_id, State:NAME, County, CONUM:dFRL, FRL_rate, dIEP, everything())
     return(master)
 

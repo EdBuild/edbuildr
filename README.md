@@ -18,9 +18,9 @@ Demographic and Geographic Estimates (EDGE). We apply EdBuild’s standard
 processing to the dataset and provide the option to select from four
 different exclusion criteria - see the masterpull help file for full
 details. The master dataset is available for any school year from 2013
-to 2018 or longitudinally for all years 2013-2018. School year is
-identified by the end year. For example, the 2017-18 school year is
-2018. Additional functions in the package use EdBuild’s master data to
+to 2019 or longitudinally for all years 2013-2019. School year is
+identified by the end year. For example, the 2018-19 school year is
+2019. Additional functions in the package use EdBuild’s master data to
 analyze the difference between neighboring school districts and create
 formatted excel tables of school district data. For full details about
 EdBuild’s data processing please see EdBuild (2020)
@@ -41,7 +41,7 @@ To view school district finance data for all districts:
 
 ``` r
 library(edbuildr)
-## To import EdBuild's master dataset of school district finance, student demographic, and community economic data for 2017:
+## To import EdBuild's master dataset of school district finance, student demographic, and community economic data for 2018:
 master_18 <- masterpull(data_year = "2018")
 
 str(master_18)

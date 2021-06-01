@@ -3,7 +3,7 @@
 \name{long_masterpull}
 \alias{long_masterpull}
 \title{A function to import a longitudinal version of EdBuild's master dataset}
-\format{A data frame with 111,264 observations and 43 variables. To view
+\format{A data frame with 130,419 observations and 44 variables. To view
   descriptions of variable names and sources for each use
   \code{master_codebook()}}
 \usage{
@@ -14,7 +14,7 @@ A dataframe where each observation is a school district.
 }
 \description{
 This function imports a longitudinal dataset of EdBuild's master data for the
-years 2013- 2018. The master dataset is a compilation of national level
+years 2013- 2019. The master dataset is a compilation of national level
 school district data from the US Census Annual Survey of School System
 Finances (F33); US Census Small Area Income and Poverty Estimates (SAIPE);
 National Center for Education Statistics (NCES) Common Core of Data (CCD);

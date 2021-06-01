@@ -3,7 +3,7 @@
 #' This function allows you to find the difference between each pair of school
 #' district neighbors and calculate the national rank from largest to smallest.
 #' @param data_year Four digit year of master data to pull in. Options include
-#'   2013- 2018. Defaults to 2018.
+#'   2013- 2019. Defaults to 2019.
 #' @param diff_var Character string on which to rank the difference between
 #'   school district neighbors. Use diff_var = “options” to print a list of the variables.
 #'   Defaults to Percentage Point Difference in
@@ -17,7 +17,7 @@
 #'   district and it has 1 neighbor that is also unified, 16 neighbors that are secondary
 #'   districts, and 32 neighbors that are elementary districts.
 #' @keywords neighbors difference rank EdBuild
-#' @usage neigh_diff(data_year= "2018",
+#' @usage neigh_diff(data_year= "2019",
 #'  diff_var="Percentage Point Difference in Poverty Rate", type= "like")
 #' @import dplyr magrittr
 #' @return A dataframe where each observation is a pair of neighboring school
@@ -27,18 +27,18 @@
 #' @export
 #' @examples
 #' \donttest{tr_diff <- neigh_diff(
-#'            data_year = "2018",
+#'            data_year = "2019",
 #'            diff_var = "Difference in Total Revenue Per Pupil"
 #'            )}
 
-neigh_diff = function(data_year = "2018", diff_var="Percentage Point Difference in Poverty Rate", type= "like") {
+neigh_diff = function(data_year = "2019", diff_var="Percentage Point Difference in Poverty Rate", type= "like") {
 
   if (as.numeric(data_year)<2013) {
     message("Error: Master datasets are only available for years 2013 through 2018")
   }
 
-  else if (as.numeric(data_year)>2018) {
-    message("Error: Master datasets are only available for years 2013 through 2018")
+  else if (as.numeric(data_year)>2019) {
+    message("Error: Master datasets are only available for years 2013 through 2019")
   }
 
     else if (as.numeric(data_year)==2013){
@@ -97,6 +97,18 @@ neigh_diff = function(data_year = "2018", diff_var="Percentage Point Difference 
       dplyr::mutate(FRL_rate = dFRL/dEnroll_district)
 
     pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1617.csv"
+    pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
+
+  }
+
+  else if(as.numeric(data_year)==2019) {
+    url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19_geo_exc.csv"
+    master <- read.csv(file = url, stringsAsFactors = FALSE) %>%
+      dplyr::mutate(dFRL = NA,
+                    FRL_rate = dFRL/dEnroll_district) %>%
+      dplyr::rename(sd_type = sdType)
+
+    pairs_url = "https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Pairs/pairs_1819.csv"
     pairs <- read.csv(file = pairs_url, stringsAsFactors = FALSE)
 
   }
@@ -284,7 +296,7 @@ neigh_diff = function(data_year = "2018", diff_var="Percentage Point Difference 
               diff_list <- pairs_data_diff %>%
                 dplyr::select(`Percent Difference in Local Revenue Per Pupil`:`Percent Difference in Students Per Square Mile`)
               print(names(diff_list)) ## runs if diff_var is not in variable name list of pairs_data_diff
-              message("Please see above for variables you can use to rank neighbors.")
+              message("Please see above for variables you can use to rank neighbors. Please note, the number of FRL students and the FRL rate is not available for 2019.")
             }
 
             else {
@@ -317,7 +329,7 @@ neigh_diff = function(data_year = "2018", diff_var="Percentage Point Difference 
         diff_list <- pairs_data_diff %>%
           dplyr::select(`Percent Difference in Local Revenue Per Pupil`:`Percent Difference in Students Per Square Mile`)
         print(names(diff_list)) ## runs if diff_var is not in variable name list of pairs_data_diff
-        message("Please see above for variables you can use to rank neighbors.")
+        message("Please see above for variables you can use to rank neighbors. Please note, the number of FRL students and the FRL rate is not available for 2019.")
       }
 
       else {

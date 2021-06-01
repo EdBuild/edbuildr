@@ -4,11 +4,11 @@
 \alias{big_borders}
 \title{A function to model local revenue pooling}
 \usage{
-big_borders(data_year= "2018", pooling_level = "county")
+big_borders(data_year= "2019", pooling_level = "county")
 }
 \arguments{
 \item{data_year}{Four digit year of master data to pull in. Options include
-2013- 2018. Defaults to 2018.}
+2013- 2019. Defaults to 2019.}
 
 \item{pooling_level}{Character string indicating the level of local revenue
 pooling. Either county or state. Defaults to county.}
@@ -22,7 +22,7 @@ the county or state level to see the effects on individual districts.
 }
 \examples{
 \donttest{state_pool <- big_borders(
-           data_year = "2018",
+           data_year = "2019",
            pooling_level = "state"
            )}
 }

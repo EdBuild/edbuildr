@@ -4,7 +4,7 @@
 #' @description This function allows you to write out a table of any school
 #'   districts with selected data as a formatted excel file.
 #' @param data_year Four digit year of master data to pull in. Options include
-#'   2013- 2018. Defaults to 2018.
+#'   2013- 2019. Defaults to 2019.
 #' @param state State name. Defaults to New Jersey.
 #' @param county County name. Defaults to NULL.
 #' @param table_vars Variable or list of variables to include in the table. Use
@@ -13,7 +13,7 @@
 #'   State Revenue, Per Pupil; Total Revenue, Per Pupil.
 #' @keywords neighbors difference table EdBuild
 #' @import dplyr openxlsx scales stringr magrittr
-#' @usage sd_table_xlsx(data_year = '2018', state = "New Jersey", county = NULL,
+#' @usage sd_table_xlsx(data_year = '2019', state = "New Jersey", county = NULL,
 #'   table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite',
 #'   'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP'))
 #' @return An excel workbook which can be written out with
@@ -23,20 +23,20 @@
 #'   \code{\link{masterpull}}
 #' @export
 #' @examples
-#' \donttest{my_table <- sd_table_xlsx(data_year = "2018",
+#' \donttest{my_table <- sd_table_xlsx(data_year = "2019",
 #'             state = "Maryland",
 #'             county = c("Baltimore County", "Baltimore City", "Howard County", "Carroll County"),
 #'             table_vars = c("Name", "Poverty Rate")
 #'              )}
 
 
-sd_table_xlsx = function (data_year = '2018', state = "New Jersey", county = NULL, table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP')) {
+sd_table_xlsx = function (data_year = '2019', state = "New Jersey", county = NULL, table_vars = c('Name', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP')) {
 
   good <- c('NCESID', 'Name', 'County', 'Enrollment', 'Poverty Rate', 'Percent Nonwhite', 'Percent FRL',
             'Local Revenue PP', 'State Revenue PP', 'Total Revenue PP',
             'Median Property Value', 'Median Household Income')
 
-  county_name <- masterpull(data_year='2018', data_type = "fin") %>%
+  county_name <- masterpull(data_year='2019', data_type = "fin") %>%
       dplyr::mutate(NCESID = stringr::str_pad(NCESID, 7, pad="0"),
                     County = stringr::str_trim(County)) %>%  #make sure that NCESID is properly formatted
       dplyr::filter(State == state) %>%
@@ -45,11 +45,11 @@ sd_table_xlsx = function (data_year = '2018', state = "New Jersey", county = NUL
   county_check <- county_name$County
 
   if (as.numeric(data_year)<2013) {
-    message("Error: Master datasets are only available for years 2013 through 2018")
+    message("Error: Master datasets are only available for years 2013 through 2019")
   }
 
-  else if (as.numeric(data_year)>2018) {
-    message("Error: Master datasets are only available for years 2013 through 2018")
+  else if (as.numeric(data_year)>2019) {
+    message("Error: Master datasets are only available for years 2013 through 2019")
   }
 
   else if (length(county) > 0 & setequal(intersect(county, county_check), county) == FALSE) {

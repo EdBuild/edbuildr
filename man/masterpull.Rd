@@ -6,15 +6,15 @@
 \format{A data frame with 42 variables. To view descriptions of variable
   names and sources for each use \code{master_codebook()}}
 \source{
-\url{https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2018/full_data_18_type_exc.csv}
+\url{https://s3.amazonaws.com/data.edbuild.org/public/Processed+Data/Master/2019/full_data_19_type_exc.csv}
 }
 \usage{
-masterpull(data_year = "2018", data_type = "gen", disaggregated =
+masterpull(data_year = "2019", data_type = "gen", disaggregated =
   FALSE)
 }
 \arguments{
 \item{data_year}{Four digit year of master data to pull in. Options include
-2013- 2018. Defaults to 2018.}
+2013- 2019. Defaults to 2019.}
 
 \item{data_type}{Type of master data to pull in \itemize{ \item \code{geo}
 pulls in all school districts that have physical school district
@@ -30,7 +30,7 @@ used with great care, or to find a district that does not appear in any
 other exclusion, for example charter school districts. } Defaults to
 \code{gen}}
 
-\item{disaggregated}{For the full, general, and finance exclusions in 2018,
+\item{disaggregated}{For the full, general, and finance exclusions in 2019,
 users have the option to view disaggregated Vermont school district data
 without EdBuild's aggregation processing.}
 }
@@ -39,7 +39,7 @@ A dataframe where each observation is a school district.
 }
 \description{
 This function allows you to read in EdBuild's master dataset for the years
-2013- 2018. The master dataset is a compilation of national level school
+2013- 2019. The master dataset is a compilation of national level school
 district data from the US Census Annual Survey of School System Finances
 (F33); US Census Small Area Income and Poverty Estimates (SAIPE); National
 Center for Education Statistics (NCES) Common Core of Data (CCD); and
@@ -88,7 +88,7 @@ There are three types of exclusions that can be applied to the master
   \item Excludes districts from the US territories. }
 }
 \examples{
-\donttest{master18_geo <- masterpull("2018", data_type = "geo")}
+\donttest{master19_geo <- masterpull("2019", data_type = "geo")}
 }
 \seealso{
 \code{\link{master_codebook}}, \code{\link{long_masterpull}}
