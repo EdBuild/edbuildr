@@ -76,6 +76,7 @@ long_masterpull = function() {
       master_19 <- read.csv(file = url_19, stringsAsFactors = FALSE) %>%
         dplyr::mutate(CONUM = as.character(CONUM),
                       STATE_FIPS = as.character(STATE_FIPS),
+                      dIEP = as.character(dIEP),
                       dFRL = NA,
                       FRL_rate = dFRL/dEnroll_district,
                       year = "2019")
